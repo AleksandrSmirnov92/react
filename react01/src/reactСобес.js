@@ -450,7 +450,7 @@ axios
 .get("https:// и тд")
 .then (data => console.log(data))
   нужно посмотреть ajax на практике  
-   
+   git снова работает
    
    
    
