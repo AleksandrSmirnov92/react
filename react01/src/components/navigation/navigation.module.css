@@ -1,0 +1,15 @@
+.navigation{
+   grid-area: n;
+   background: rgb(180, 34, 34);
+   padding-left: 20px;
+   padding-top: 20px;
+ }
+ .item{
+   color :white;
+   text-decoration: none;
+   padding-bottom: 20px;
+ }
+ .active {
+   color:gold;
+   text-decoration: none;
+ }

@@ -1,0 +1,10 @@
+
+ .main_img{
+   width: 100%;
+   height: 200px;
+ }
+ 
+ .main_item {
+   display:flex; 
+   flex-direction: column;
+ }

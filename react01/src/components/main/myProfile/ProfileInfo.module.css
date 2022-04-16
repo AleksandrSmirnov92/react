@@ -1,0 +1,13 @@
+.main_avatar_and_desription{
+  display: flex;
+}
+ .main_avatar{
+  width: 200px;
+  height: 200px;
+}
+ .main_decription{
+   display: flex;
+   flex-direction: column;
+   padding-left: 20px;
+ }
+ 

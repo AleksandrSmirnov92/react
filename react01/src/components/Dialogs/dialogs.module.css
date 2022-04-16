@@ -1,0 +1,23 @@
+.wrapper_dialogs {
+   display: grid;
+   grid-template-columns: 3fr 10fr;
+   /* color : red; */
+}
+.dialogs_menuName{
+   
+   display : flex;
+   flex-direction: column;
+   
+   background-color: rgba(173, 184, 23, 0.753);
+}
+.dialogs_massage{
+   
+   background-color: aqua;
+}
+.menuName_h2 {
+   text-align: center;
+   color:white;
+}
+.names{
+   list-style-type: none;
+}
