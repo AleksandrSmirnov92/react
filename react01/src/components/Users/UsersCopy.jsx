@@ -1,40 +1,32 @@
 import * as axios from "axios";
 import React from "react";
 import styles from "./Users.module.css";
-import userPhoto from "./images/user.png";
+import UserPhoto from "../../images/user.png";
 class Users extends React.Component {
   constructor(props) {
     super(props)
-    if (this.props.users.length === 0) {
+  }
+    componentDidMount() {
       axios
         .get("https://social-network.samuraijs.com/api/1.0/users")
         .then((response) => {
           this.props.setUsers(response.data.items);
-        });
+        })
     }
-  }
-  //  getUsers = () => {
-    // if (this.props.users.length === 0) {
-    //   axios
-    //     .get("https://social-network.samuraijs.com/api/1.0/users")
-    //     .then((response) => {
-    //       this.props.setUsers(response.data.items);
-    //     });
-    // }
-  // }
+  
   render() {
     return (
       <div>
-        {/* <button onClick={this.getUsers}>Get Users</button> */}
         {this.props.users.map((user) => {
           return (
             <div key={user.id}>
-              <span className={styles.userBox}>
+              <div className={styles.userBox}>
                 <img
                   srs={
-                    user.photos.small != null ? user.photos.small : userPhoto
+                    user.photos.small != null ? user.photos.small : UserPhoto
                   }
                   className={styles.userPhoto}
+                 
                 />
                 {user.followed ? (
                   <button
@@ -53,7 +45,7 @@ class Users extends React.Component {
                     follow
                   </button>
                 )}
-              </span>
+              </div>
               <span>
                 <span>
                   <div>{user.name}</div>
