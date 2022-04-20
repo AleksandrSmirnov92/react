@@ -1,50 +1,59 @@
-import React from "react"
+import * as axios from "axios";
+import React from "react";
+import styles from "./Users.module.css";
+import userPhoto from "./images/user.png";
 const Users = (props) => {
-   debugger
-   if (props.users.length === 0) {
-   props.setUsers(
-      [
-         {
-           id: 1,
-           followed: true,
-           fullname: "Dmitriy",
-           status: "i m boss",
-           location: { city: "Minsk", country: "Belarus" },
-         },
-         {
-           id: 2,
-           followed: false,
-           fullname: "Sasha",
-           status: "i m boss too",
-           location: { city: "Moscow", country: "Russia" },
-         },
-       ]
-      
-   )
-      }
-      
-return (
-   
-   <div>
+  if (props.users.length === 0) {
+    axios
+      .get("https://social-network.samuraijs.com/api/1.0/users")
+      .then((response) => {
+        props.setUsers(response.data.items);
+      });
+  }
+
+  return (
+    <div>
       {props.users.map((user) => {
-         return (
-         <div key = {user.id}>
-            <span>
-                {user.followed ? <button onClick={() => {props.unfollow(user.id)}}>unfollow</button> : <button onClick={() => {props.follow(user.id)}}>follow</button>}
+        debugger;
+        return (
+          <div key={user.id}>
+            <span className={styles.userBox}>
+              <img
+                srs={user.photos.small != null ? user.photos.small : userPhoto}
+                className={styles.userPhoto}
+              />
+              {user.followed ? (
+                <button
+                  onClick={() => {
+                    props.unfollow(user.id);
+                  }}
+                >
+                  unfollow
+                </button>
+              ) : (
+                <button
+                  onClick={() => {
+                    props.follow(user.id);
+                  }}
+                >
+                  follow
+                </button>
+              )}
             </span>
             <span>
-               <span>
-                  <div>{user.fullname}</div>
-                  <div>{user.status}</div>
-               </span>
-               <span>
-                  <div>{user.location.country}</div>
-                  <div>{user.location.city}</div>
-               </span>
+              <span>
+                <div>{user.name}</div>
+                <div>{user.status}</div>
+              </span>
+              <span>
+                <div>{"user.location.country"}</div>
+                <div>{"user.location.city"}</div>
+              </span>
             </span>
-         </div>
-      )})}
-   </div>
-)
-}
-export default Users
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+export default Users;

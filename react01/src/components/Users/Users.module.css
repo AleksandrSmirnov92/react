@@ -1,0 +1,11 @@
+.userBox{
+   display: flex;
+   flex-direction: column;
+   width: 100px;
+   height: 100px;
+}
+.userPhoto {
+width: 100px;
+height: 100px;
+background-color: aqua;
+}
