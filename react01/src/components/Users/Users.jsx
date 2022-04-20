@@ -3,6 +3,7 @@ import React from "react";
 import styles from "./Users.module.css";
 import userPhoto from "./images/user.png";
 const Users = (props) => {
+   let getUsers = () => {
   if (props.users.length === 0) {
     axios
       .get("https://social-network.samuraijs.com/api/1.0/users")
@@ -10,11 +11,12 @@ const Users = (props) => {
         props.setUsers(response.data.items);
       });
   }
+}
 
   return (
     <div>
+       <button onClick={getUsers}>Get Users</button>
       {props.users.map((user) => {
-        debugger;
         return (
           <div key={user.id}>
             <span className={styles.userBox}>
