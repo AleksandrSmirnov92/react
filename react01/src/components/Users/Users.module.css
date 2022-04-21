@@ -1,3 +1,8 @@
+.mainContent{
+  display: flex;
+  flex-direction: column;
+  
+}
 .userBox{
    display: flex;
    flex-direction: column;
@@ -8,4 +13,12 @@
 .userPhoto {
 width: 100px;
 height: 100px;
+}
+.usersPage{
+   display: flex;
+   justify-content: center;
+   font-weight: bold;
+}
+.usersPagesColor {
+   color:red
 }
