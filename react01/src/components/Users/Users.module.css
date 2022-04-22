@@ -22,3 +22,13 @@ height: 100px;
 .usersPagesColor {
    color:red
 }
+.imgfetching{
+   display: block;
+   width: 100px;
+   height: 100px;
+}
+.imgfetching2{
+   display: none;
+   width: 100px;
+   height: 100px;
+}
