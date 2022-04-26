@@ -12,6 +12,7 @@ let initialState = {
   isFetching:false
 };
 const usersReduce = (state = initialState, action) => {
+  
   let stateCopy
   switch (action.type) {
     case FOLLOW:

@@ -1,6 +1,6 @@
 const addPost = "ADD-POST";
 const apdate = "APDATE-NEW-POST-TEXT";
-
+const SET_USER_PROFILE = "SET_USER_PROFILE"
 let initialState = {
   postData: [
     { id: 1, massage: "hi how are you?", likescount: 0 },
@@ -10,6 +10,7 @@ let initialState = {
     { id: 5, massage: "yo" },
   ],
   newPostText: "",
+  profile:null
 }
 
 const profileReduce = (state = initialState, action) => {
@@ -34,6 +35,13 @@ const profileReduce = (state = initialState, action) => {
       }
       return stateCopy
     }
+    case SET_USER_PROFILE: { 
+      stateCopy= {
+        ...state,
+        profile:action.profile
+      }
+      return stateCopy
+    }
     
    default: 
      return state
@@ -52,5 +60,11 @@ export const addPostActionCreator = () => {
      NewText: text,
    };
  };
+ export const setUserProfile = (profile) => {
+  return {
+    type: SET_USER_PROFILE,
+    profile
+  };
+};
  
 export default profileReduce

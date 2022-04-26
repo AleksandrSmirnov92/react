@@ -13,6 +13,7 @@
 .userPhoto {
 width: 100px;
 height: 100px;
+margin-bottom:10px;
 }
 .usersPage{
    display: flex;
@@ -31,4 +32,10 @@ height: 100px;
    display: none;
    width: 100px;
    height: 100px;
+}
+.username{
+   margin-top: 50px;
+   margin-bottom: 10px;
+   display: flex;
+   flex-direction: column;
 }

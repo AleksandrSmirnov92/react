@@ -3,6 +3,7 @@ import React from "react";
 import styles from "./Users.module.css";
 import UserPhoto from "../../images/user.png";
 import preloader from '../../images/loadsvg.svg'
+import { NavLink,Link } from "react-router-dom";
 let Users = (props) => {
   let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
   let pages = [];
@@ -32,18 +33,21 @@ let Users = (props) => {
             );
           })}
         </div>
-        <img src={preloader } className = {props.isFetching ? styles.imgfetching: styles.imgfetching2}/>
+        
+        <img src={preloader} className = {props.isFetching ? styles.imgfetching: styles.imgfetching2}/>
+        
         {props.users.map((user) => {
           debugger;
           return (
             <div key={user.id}>
               <div className={styles.userBox}>
+                <Link to={`./../main/` + user.id}>
                 <img
                   src={
                     user.photos.small !== null ? user.photos.small : UserPhoto
                   }
                   className={styles.userPhoto}
-                />
+                /></Link>
                 {user.followed ? (
                   <button
                     onClick={() => {
@@ -62,7 +66,7 @@ let Users = (props) => {
                   </button>
                 )}
               </div>
-              <span>
+              <span className={styles.username}>
                 <span>
                   <div>{user.name}</div>
                   <div>{user.status}</div>
