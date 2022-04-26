@@ -20,7 +20,7 @@ import MainContainer from './components/main/mainContainer';
       <Nav />
       <Routes className='app-wrapper-content'> {/*Теперь react-router-dom*/}
     
-      <Route path='/main/*' element= {<MainContainer />}/>
+      <Route path='/main/:userId' element= {<MainContainer />}/>
       <Route path='/Dialogs' element= {<DialogsContainer />} />
       <Route path='/news' element = {<News/>} />
       <Route path = 'Music' />

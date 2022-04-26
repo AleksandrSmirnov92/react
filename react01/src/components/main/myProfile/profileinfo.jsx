@@ -3,15 +3,14 @@ import React from "react";
 import mains from "./ProfileInfo.module.css";
 
 const ProfileInfo = (props) => {
-  debugger
+  
   if (!props.profile) {
     return (
       <div>
         <span>ждем</span>
       </div>
     );
-  } else {
-    debugger
+  } 
     return (
       <div className={mains.main_avatar_and_desription}>
         <img
@@ -20,7 +19,8 @@ const ProfileInfo = (props) => {
           alt=""
         ></img>
         <div className={mains.main_decription}>
-          <img src={props.profile.photos.large} />
+          <img src={props.profile.photos.large} alt=""/>
+          <span>{props.profile.userId}</span>
           <h1> Dmitriy we</h1>
           <span>date of birth</span>
           <span>city</span>
@@ -28,6 +28,5 @@ const ProfileInfo = (props) => {
         </div>
       </div>
     );
-  }
-};
+  };
 export default ProfileInfo;

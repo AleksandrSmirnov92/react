@@ -576,7 +576,29 @@ let ob = {
 далее создаем контейнерную компоненту maincontainer 
 внутри создаем классовую и возвращаем main и туда передаем пропсы    
    
-   
+урок 60 не работает нужно искать решение 
+в общем у нас есть url  в браузере с id пользователей нам нужно чтобы при клике на пользователя наш id считывался и отображал нужную нам 
+страничку
+с этим нам может помочь withRouter  в общем решение
+добовляем функцию
+function withRouter (Component) {
+   function ComponentWithRouterProp (props) {
+      let location = useLocation();
+      let navigate = useNavigate();
+      let params = useParams()
+      return (
+         <Component {...props} router={{location,navigate,params}}/>
+      )
+   }
+   return ComponentWithRouterProp
+   ипортируем useLocation useParams и useNavigate из react routes dom
+   далее в connect доовляем нашу функцию connect()(withRouter(...))
+   далее в app 
+   path дописывваем main/:userId
+   далее в componentDidMount добовляем let userId = this.props.router.params.userId
+   и прописываем новый путь до .get(
+          `https://social-network.samuraijs.com/api/1.0/profile/${userId}`
+        )
    
    
    
