@@ -3,8 +3,8 @@ import { connect } from "react-redux"
 import { followActionCreator, setUsersActionCreator, unfollowActionCreator,setCurrentPageActionCreator,setUsersTotalCountActionCreator,isFetchingActionCreator } from "../../redax/UsersReduce"
 import Users from "./Users";
 import * as axios from "axios";
-import preloader from '../../images/loadsvg.svg'
-import styles from "./Users.module.css";
+// import preloader from '../../images/loadsvg.svg'
+// import styles from "./Users.module.css";
 class UsersApiComponent extends React.Component {
    constructor(props) {
      super(props);

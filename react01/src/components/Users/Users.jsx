@@ -37,7 +37,6 @@ let Users = (props) => {
         <img src={preloader} className = {props.isFetching ? styles.imgfetching: styles.imgfetching2}/>
         
         {props.users.map((user) => {
-          debugger;
           return (
             <div key={user.id}>
               <div className={styles.userBox}>

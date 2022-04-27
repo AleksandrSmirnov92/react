@@ -8,3 +8,10 @@
    /* width: 30px; */
    height: 100%;
  }
+ .loginblock{
+   float: right;
+   text-decoration: none;
+   color: white;
+   padding-right: 20px;
+   padding-top: 20px;
+ }

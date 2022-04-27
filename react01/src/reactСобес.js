@@ -599,13 +599,19 @@ function withRouter (Component) {
    и прописываем новый путь до .get(
           `https://social-network.samuraijs.com/api/1.0/profile/${userId}`
         )
-   
-   
-   
-   
-   
-   
-   
+  урок 61 cookie,login
+создадим authreducer
+удаляем часть констант
+меняем state 
+usersId: null,
+  email:null,
+  login:null,   
+создаем константу SET_USER_DATA и устанвливаем ее в case
+далее создаем headerContainer 
+делаем классовую компоненту передаем ее в app и для серверского запроса прописываем auth/me
+далее вторым параметром передаем обьект который withCredentials:true - это презинтанционаая хука (в котором сидят настройки запроса)
+
+
    
    
    
