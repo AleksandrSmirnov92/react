@@ -2,8 +2,8 @@ import * as axios from "axios";
 import React from "react";
 import styles from "./Users.module.css";
 import UserPhoto from "../../images/user.png";
-import preloader from '../../images/loadsvg.svg'
-import { NavLink,Link } from "react-router-dom";
+import preloader from "../../images/loadsvg.svg";
+import { NavLink, Link } from "react-router-dom";
 let Users = (props) => {
   let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
   let pages = [];
@@ -33,24 +33,47 @@ let Users = (props) => {
             );
           })}
         </div>
-        
-        <img src={preloader} className = {props.isFetching ? styles.imgfetching: styles.imgfetching2}/>
-        
+
+        <img
+          src={preloader}
+          className={
+            props.isFetching ? styles.imgfetching : styles.imgfetching2
+          }
+        />
+
         {props.users.map((user) => {
           return (
             <div key={user.id}>
               <div className={styles.userBox}>
                 <Link to={`./../main/` + user.id}>
-                <img
-                  src={
-                    user.photos.small !== null ? user.photos.small : UserPhoto
-                  }
-                  className={styles.userPhoto}
-                /></Link>
+                  <img
+                    src={
+                      user.photos.small !== null ? user.photos.small : UserPhoto
+                    }
+                    className={styles.userPhoto}
+                  />
+                </Link>
                 {user.followed ? (
                   <button
                     onClick={() => {
-                      props.unfollow(user.id);
+                
+                      axios
+                        .delete(
+                          `https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
+                          {
+                            withCredentials: true,
+                            headers:{
+                              "API-KEY": "55f4f20d-b522-4908-9d3b-ea3d9506431a"
+                            }
+                          }
+                        )
+                        .then((response) => {
+                          if (response.data.resultCode === 0) {
+                            props.unfollow(user.id);
+                          }
+                        });
+
+                    
                     }}
                   >
                     unfollow
@@ -58,7 +81,23 @@ let Users = (props) => {
                 ) : (
                   <button
                     onClick={() => {
-                      props.follow(user.id);
+                      
+                      axios
+                        .post(
+                          `https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
+                          {},
+                          {
+                            withCredentials: true,
+                            headers:{
+                              "API-KEY": "55f4f20d-b522-4908-9d3b-ea3d9506431a"
+                            }
+                          }
+                        )
+                        .then((response) => {
+                          if (response.data.resultCode === 0) {
+                            props.follow(user.id);
+                          }
+                        });
                     }}
                   >
                     follow
