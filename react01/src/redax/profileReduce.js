@@ -1,3 +1,4 @@
+import {getProfile} from "../API/api"
 const addPost = "ADD-POST";
 const apdate = "APDATE-NEW-POST-TEXT";
 const SET_USER_PROFILE = "SET_USER_PROFILE"
@@ -66,5 +67,14 @@ export const addPostActionCreator = () => {
     profile:profile
   };
 };
- 
+export const getUserProfile = (userId) => (dispatch) => {
+  return (
+    getProfile(userId)
+      .then((response) => {
+        dispatch(setUserProfile(response.data));
+      })
+  );
+}; 
+
+
 export default profileReduce

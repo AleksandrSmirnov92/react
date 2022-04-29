@@ -2,8 +2,9 @@ import React from "react";
 import Main from "./main";
 import * as axios from "axios";
 import { connect } from "react-redux";
-import { setUserProfile } from "../../redax/profileReduce";
+import { getUserProfile, setUserProfile} from "../../redax/profileReduce";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
+// import {getProfile} from "../../API/api"
 
 class MainContainer extends React.Component {
   // eslint-disable-next-line no-useless-constructor
@@ -11,12 +12,14 @@ class MainContainer extends React.Component {
     super(props);
   }
   componentDidMount() {
+    debugger
     let userId = this.props.router.params.userId;
-    axios
-      .get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
-      .then((response) => {
-        this.props.setUserProfile(response.data);
-      });
+    this.props.getUserProfile(userId)
+    // getProfile(userId)
+    //   .then((response) => {
+    //     this.props.setUserProfile(response.data);
+    //   });
+    
   }
 
   render() {
@@ -33,6 +36,9 @@ const mapDispatchToProps = (dispatch) => {
     setUserProfile: (profile) => {
       dispatch(setUserProfile(profile));
     },
+    getUserProfile:(profile) => {
+      dispatch(getUserProfile(profile))
+    }
   };
 };
 function withRouter(Component) {

@@ -4,7 +4,8 @@ import styles from "./Users.module.css";
 import UserPhoto from "../../images/user.png";
 import preloader from "../../images/loadsvg.svg";
 import { NavLink, Link } from "react-router-dom";
-import { unfollowAPI, followAPI } from "../../API/api";
+// import { unfollowAPI, followAPI } from "../../API/api";
+// import {unfollowAc} from "../../redax/UsersReduce"
 let Users = (props) => {
   let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
   let pages = [];
@@ -59,13 +60,14 @@ let Users = (props) => {
                   <button
                     disabled={props.followingInProgress.some(id => id === user.id)}
                     onClick={() => {
-                      props.togglefollowingInProgress(true,user.id);
-                      unfollowAPI(`${user.id}`).then((data) => {
-                        if (data.resultCode === 0) {
-                          props.unfollow(user.id);
-                        }
-                        props.togglefollowingInProgress(false,user.id);
-                      });
+                      // props.togglefollowingInProgress(true,user.id);
+                      // unfollowAPI(`${user.id}`).then((data) => {
+                      //   if (data.resultCode === 0) {
+                      //     props.unfollow(user.id);
+                      //   }
+                      //   props.togglefollowingInProgress(false,user.id);
+                      // });
+                      props.unfollow(user.id)
                     }}
                   >
                     unfollow
@@ -74,13 +76,14 @@ let Users = (props) => {
                   <button
                     disabled={props.followingInProgress.some(id => id === user.id)}
                     onClick={() => {
-                      props.togglefollowingInProgress(true,user.id);
-                      followAPI(user.id).then((data) => {
-                        if (data.resultCode === 0) {
-                          props.follow(user.id);
-                        }
-                        props.togglefollowingInProgress(false,user.id);
-                      });
+                      // props.togglefollowingInProgress(true,user.id);
+                      // followAPI(user.id).then((data) => {
+                      //   if (data.resultCode === 0) {
+                      //     props.follow(user.id);
+                      //   }
+                      //   props.togglefollowingInProgress(false,user.id);
+                      // });
+                      props.follow(user.id)
                     }}
                   >
                     follow

@@ -2,16 +2,19 @@ import React from "react";
 import { connect } from "react-redux";
 import {
   followActionCreator,
-  setUsersActionCreator,
-  unfollowActionCreator,
+  // setUsersActionCreator,
+  // unfollowActionCreator,
   setCurrentPageActionCreator,
-  setUsersTotalCountActionCreator,
-  isFetchingActionCreator,
-  followingInProgressActionCreator
+  // setUsersTotalCountActionCreator,
+  // isFetchingActionCreator,
+  followingInProgressActionCreator,
+  getUsersThunkCreator,
+  unfollowAc,
+  followAc
 } from "../../redax/UsersReduce";
 import Users from "./Users";
-import * as axios from "axios";
-import { getUsers } from "../../API/api";
+// import * as axios from "axios";
+// import { getUsers } from "../../API/api";
 // import preloader from '../../images/loadsvg.svg'
 // import styles from "./Users.module.css";
 class UsersApiComponent extends React.Component {
@@ -19,25 +22,27 @@ class UsersApiComponent extends React.Component {
     super(props);
   }
   componentDidMount() {
-    this.props.togallIsFetching(true);
+    this.props.getUsersThunkCreator(this.props.currentPage,this.props.pageSize)
+    // this.props.togallIsFetching(true);
    
-    getUsers(this.props.currentPage, this.props.pageSize).then((data) => {
-      this.props.togallIsFetching(false);
-      this.props.setUsers(data.items);
-      this.props.setUsersTotalCount(data.totalCount);
+    // getUsers(this.props.currentPage, this.props.pageSize).then((data) => {
+    //   this.props.togallIsFetching(false);
+    //   this.props.setUsers(data.items);
+    //   this.props.setUsersTotalCount(data.totalCount);
      
-    });
+    // });
   }
   onPageChanged = (pageNumber) => {
+    this.props.getUsersThunkCreator(pageNumber,this.props.pageSize)
     this.props.setCurrentPage(pageNumber);
-    this.props.togallIsFetching(true);
+    // this.props.togallIsFetching(true);
     
 
-    getUsers(pageNumber, this.props.pageSize).then((data) => {
-      this.props.setUsers(data.items);
-      this.props.togallIsFetching(false);
+    // getUsers(pageNumber, this.props.pageSize).then((data) => {
+    //   this.props.setUsers(data.items);
+    //   this.props.togallIsFetching(false);
      
-    });
+    // });
   };
   render() {
     return (
@@ -72,27 +77,36 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    follow: (userId) => {
-      dispatch(followActionCreator(userId));
-    },
-    unfollow: (userId) => {
-      dispatch(unfollowActionCreator(userId));
-    },
-    setUsers: (users) => {
-      dispatch(setUsersActionCreator(users));
-    },
+    // follow: (userId) => {
+    //   dispatch(followActionCreator(userId));
+    // },
+    // unfollow: (userId) => {
+    //   dispatch(unfollowActionCreator(userId));
+    // },
+    // setUsers: (users) => {
+    //   dispatch(setUsersActionCreator(users));
+    // },
     setCurrentPage: (pageNumber) => {
       dispatch(setCurrentPageActionCreator(pageNumber));
     },
-    setUsersTotalCount: (totalCount) => {
-      dispatch(setUsersTotalCountActionCreator(totalCount));
-    },
-    togallIsFetching: (isFetching) => {
-      dispatch(isFetchingActionCreator(isFetching));
-    },
+    // setUsersTotalCount: (totalCount) => {
+    //   dispatch(setUsersTotalCountActionCreator(totalCount));
+    // },
+    // togallIsFetching: (isFetching) => {
+    //   dispatch(isFetchingActionCreator(isFetching));
+    // },
     togglefollowingInProgress:(following) => {
        dispatch(followingInProgressActionCreator(following))
-    }
+    },
+    getUsersThunkCreator: (currentPage,pageSize) => {
+      dispatch(getUsersThunkCreator(currentPage,pageSize))
+    },
+    unfollow: (userId) => {
+      dispatch(unfollowAc(userId));
+    },
+    follow: (userId) => {
+      dispatch(followAc(userId));
+    },
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(UsersApiComponent);

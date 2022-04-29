@@ -661,8 +661,54 @@ const instence = axios.create({
 сегодня делаем чтобы при нажатии на кнопку много раз не отправлялся запрос много раз так как сервер еще думает нажав на кнопку много раз мы отправляем 10 запросов 
 идем в userReduser добовляем в наш state followingInProgress
 далее создаем action creator далее все прокидваем через пропсы в наше users (если выполнилось добовляем true если нет то false)
- 
 
+урок 65 redux-thunk в деталях (теория)
+у нас есть ui(react) есть bll(redux) и есть server и dal
+поскольку ui обращается к dal, dal обращается к серверу сервер возвращет в ui информацию потом ui отправляет информацию в bll
+И у нас получается что ui слишком умный а должно все происходить в бизнес
+тоесть нам нужна функция внутри bll которая делает асинхронные запросы на сервер называется thunk
+проблема в том что м ыдолжны dispatch функцию а как мы помним dispatch принимает тоько state и action{}
+thunk - это функция которая умеет делать асинхронные задачи и диспатчить action 
+const addPOst = (dispatch) => {
+  dispatch(onLoading())
+  axios.post({message}).then(()=>{
+    dispatch(addPost(message))
+    dispatch(offLoading())
+  })
+}
+урок 66 redux-thunk практика 
+у нас есть контейнерная компонента которая делает ajax запросы мы хотим сделать  так чтобы она вообще не знала про ajax запросы 
+создадим thunk в userReducer 
+export const getUsersThunkCreator = (currentPage, pageSize) => {
+return (dispatch) => {
+  dispatch(isFetchingActionCreator(true));
+   
+  getUsers(currentPage,pageSize).then((data) => {
+    dispatch(isFetchingActionCreator(false));
+    dispatch(setUsersActionCreator(data.items));
+    dispatch(setUsersTotalCountActionCreator(data.totalCount));
+})
+}
+}
+удалим из userContainer 
+// this.props.togallIsFetching(true);
+   
+    // getUsers(this.props.currentPage, this.props.pageSize).then((data) => {
+    //   this.props.togallIsFetching(false);
+    //   this.props.setUsers(data.items);
+    //   this.props.setUsersTotalCount(data.totalCount);
+     
+    // });
+  и импортируем  this.props.getUsersThunkCreator(this.props.currentPage,this.props.pageSize)
+  инсталируем npm i thunk-redux
+  в redux-store добавим в let store = createStore(redusers,applyMiddleware(thunkMiddleware))
+  applyMiddleware импортируем из redux
+  thunkMiddleware импортируем из redux-thunk
+   и тоже самое делаем в users с нашими кнопками 
+   желательно пересмотреть два урока для лучше понимания 65 и 66
+
+   урок 67 thunk (практика2)
+сделал везде thunk запросы 
    
    
    

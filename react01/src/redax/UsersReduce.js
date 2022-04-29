@@ -1,3 +1,4 @@
+import { getUsers,unfollowAPI,followAPI } from "../API/api";
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
 const SET_USERS = "SET_USERS"
@@ -5,6 +6,7 @@ const SET_CURRENT_PAGE = "SET_CURRENT-PAGE"
 const SET_USERS_TOTAL_COUNT = "SET_USERS_TOTAL_COUNT"
 const IS_FETCHING = "IS_FETCHING"
 const FOLLOWING_IN_PROGRESS = "FOLLOWING_IN_PROGRESS"
+
 let initialState = {
   users: [],
   pageSize:10,
@@ -113,4 +115,45 @@ export const followingInProgressActionCreator = (following, userId) => {
     userId:userId
   }
 }
+
+export const getUsersThunkCreator = (currentPage, pageSize) => {
+return (dispatch) => {
+  dispatch(isFetchingActionCreator(true));
+ 
+  getUsers(currentPage,pageSize).then((data) => {
+    dispatch(isFetchingActionCreator(false));
+    dispatch(setUsersActionCreator(data.items));
+    dispatch(setUsersTotalCountActionCreator(data.totalCount));
+    
+})
+}
+}
+
+export const unfollowAc = (userId) => {
+  return (dispatch) => {
+    dispatch(followingInProgressActionCreator(true,userId));
+    unfollowAPI(`${userId}`).then((data) => {
+      if (data.resultCode === 0) {
+        dispatch(unfollowActionCreator(userId));
+      }
+      dispatch(followingInProgressActionCreator(false,userId));
+    });
+      
+  }}
+
+  export const followAc = (userId) => {
+    return (dispatch) => {
+      dispatch(followingInProgressActionCreator(true,userId));
+      followAPI(`${userId}`).then((data) => {
+        if (data.resultCode === 0) {
+          dispatch(followActionCreator(userId));
+        }
+        dispatch(followingInProgressActionCreator(false,userId));
+      });
+        
+    }}
+  
+
+
+
 export default usersReduce;
