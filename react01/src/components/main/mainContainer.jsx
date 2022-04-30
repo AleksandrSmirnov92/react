@@ -3,7 +3,7 @@ import Main from "./main";
 import * as axios from "axios";
 import { connect } from "react-redux";
 import { getUserProfile, setUserProfile} from "../../redax/profileReduce";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams,Navigate } from "react-router-dom";
 // import {getProfile} from "../../API/api"
 
 class MainContainer extends React.Component {
@@ -12,7 +12,7 @@ class MainContainer extends React.Component {
     super(props);
   }
   componentDidMount() {
-    debugger
+
     let userId = this.props.router.params.userId;
     this.props.getUserProfile(userId)
     // getProfile(userId)
@@ -23,12 +23,16 @@ class MainContainer extends React.Component {
   }
 
   render() {
+    if (!this.props.isAuth) {
+      return <Navigate to={"/Login"}/>
+    }
     return <Main {...this.props} profile={this.props.profile} />;
   }
 }
 let mapStateToProps = (state) => {
   return {
     profile: state.profilePage.profile,
+    isAuth:state.auth.isAuth
   };
 };
 const mapDispatchToProps = (dispatch) => {

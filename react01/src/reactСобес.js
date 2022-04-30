@@ -709,6 +709,15 @@ return (dispatch) => {
 
    урок 67 thunk (практика2)
 сделал везде thunk запросы 
+
+урок 68 redirect
+redirect - это когда мы находимся на одной страничке а эта страничка перенаправляет нас на другую страничку это называется redirect
+создаем route логин в app.js потом идем в src  и создаем папку login с login.js
+идем в dialogsContainer и дастаем из state информацию isAuth 
+идем в dialog пише если props.isAuth === false то возвращаем через return redirect
+return <Redirect to={"/login"}/> и инсертим из реакт роутер дом 
+и так в react-roter-dom - redirect нету вместо него <Navigate to= "/Login"/>
+и делаем точно так же для main
    
    
    

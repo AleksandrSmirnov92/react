@@ -9,6 +9,7 @@ import News from './components/news/news';
 import UsersContainer from './components/Users/UsersContainer';
 import MainContainer from './components/main/mainContainer';
 import HeaderContainer from './components/header/HeaderContainer';
+import Login from './Login/Login';
 
 
 
@@ -19,14 +20,16 @@ import HeaderContainer from './components/header/HeaderContainer';
     <div className="wrapper">
       <HeaderContainer />
       <Nav />
-      <Routes className='app-wrapper-content'> {/*Теперь react-router-dom*/}
-      <Route path='/main/:userId' element= {<MainContainer />}/>
-      <Route path='/main' element= {<MainContainer />}/>
-      <Route path='/Dialogs' element= {<DialogsContainer />} />
-      <Route path='/news' element = {<News/>} />
-      <Route path = 'Music' />
-      <Route path='/Users' element= {<UsersContainer/>} />
-      <Route path = 'Settings' />
+      
+      <Routes > {/*Теперь react-router-dom*/}
+      <Route path='/login' element={<Login/>}/>
+      <Route path='/main/:userId' element= {<MainContainer />} className='app-wrapper-content'/>
+      <Route path='/main' element= {<MainContainer />} className='app-wrapper-content'/>
+      <Route path='/Dialogs' element= {<DialogsContainer className='app-wrapper-content'/>} />
+      <Route path='/news' element = {<News/>} className='app-wrapper-content'/>
+      <Route path = 'Music' className='app-wrapper-content'/>
+      <Route path='/Users' element= {<UsersContainer/>} className='app-wrapper-content'/>
+      <Route path = 'Settings' className='app-wrapper-content'/>
       </Routes>
      
     </div>

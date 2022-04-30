@@ -2,8 +2,8 @@ import React from "react";
 import style from "./dialogs.module.css";
 import Dialogitem from "./Dialogitem/Dialogitem";
 import Massage from "./Dialogmassage/Dialogmassage";
-import { sendMassageCreator, updateNewMassageBodyCreator } from "../../redax/dialogsReduce";
-
+// import { sendMassageCreator, updateNewMassageBodyCreator } from "../../redax/dialogsReduce";
+import {Navigate} from "react-router-dom"
 
 
 
@@ -33,7 +33,9 @@ const Dialogs = (props) => {
     // props.store.dispatch(updateNewMassageBodyCreator(body))
     
   }
- 
+ if (!props.isAuth) {
+   return <Navigate to={"/Login"}/>
+ }
   return (
     <div className={style.wrapper_dialogs}>
       <div className={style.dialogs_menuName}>

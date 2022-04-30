@@ -36,9 +36,10 @@ import { connect } from "react-redux";
 // };
 
 let mapStateToProps = (state) => {
-
+  debugger
   return {
-    massagePage:state.massagePage
+    massagePage:state.massagePage,
+    isAuth:state.auth.isAuth
   }
 }
 let mapDispatchToProps = (dispatch) => {
