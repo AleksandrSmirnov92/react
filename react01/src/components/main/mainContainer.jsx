@@ -2,47 +2,47 @@ import React from "react";
 import Main from "./main";
 import * as axios from "axios";
 import { connect } from "react-redux";
-import { getUserProfile, setUserProfile} from "../../redax/profileReduce";
-import { useLocation, useNavigate, useParams,Navigate } from "react-router-dom";
-// import {getProfile} from "../../API/api"
-
+import { getUserProfile, setUserProfile } from "../../redax/profileReduce";
+import {
+  useLocation,
+  useNavigate,
+  useParams,
+  // Navigate,
+} from "react-router-dom";
+import {withAuthRedirect} from "../../HOC/WithAuthRedirect"
+import { compose } from "redux";
 class MainContainer extends React.Component {
-  // eslint-disable-next-line no-useless-constructor
   constructor(props) {
     super(props);
   }
   componentDidMount() {
-
     let userId = this.props.router.params.userId;
-    this.props.getUserProfile(userId)
-    // getProfile(userId)
-    //   .then((response) => {
-    //     this.props.setUserProfile(response.data);
-    //   });
-    
+    this.props.getUserProfile(userId);
   }
 
   render() {
-    if (!this.props.isAuth) {
-      return <Navigate to={"/Login"}/>
-    }
     return <Main {...this.props} profile={this.props.profile} />;
   }
 }
+// compose(connect(
+//   mapStateToProps,
+//   mapDispatchToProps
+// ),withRouter,withAuthRedirect)(MainContainer)
+// let AuthRedirectComponent = withAuthRedirect(MainContainer) 
 let mapStateToProps = (state) => {
   return {
     profile: state.profilePage.profile,
-    isAuth:state.auth.isAuth
   };
 };
+// let WithUrlDataContainerComponent = withRouter(AuthRedirectComponent)
 const mapDispatchToProps = (dispatch) => {
   return {
     setUserProfile: (profile) => {
       dispatch(setUserProfile(profile));
     },
-    getUserProfile:(profile) => {
-      dispatch(getUserProfile(profile))
-    }
+    getUserProfile: (profile) => {
+      dispatch(getUserProfile(profile));
+    },
   };
 };
 function withRouter(Component) {
@@ -54,7 +54,12 @@ function withRouter(Component) {
   }
   return ComponentWithRouterProp;
 }
-export default connect(
+
+// export default connect(
+//   mapStateToProps,
+//   mapDispatchToProps
+// )(withRouter(WithUrlDataContainerComponent));
+export default compose(connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(MainContainer));
+),withRouter,withAuthRedirect)(MainContainer)
