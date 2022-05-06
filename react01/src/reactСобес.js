@@ -762,8 +762,41 @@ compose(connect(mapStateToProps, mapDispatchToProps) ,withAuthRedirect)(Dialogs)
        editMode:true
     })
 
-урок 72 обновляем create-react-app
-   
+урок 72 обновляем create-react-app можно пропустить
+
+урок 73 hhtp put, local state
+Первое с чего начнем  это с разработки API 
+идем в api  и создаем get status
+далее идем в mainContainer и там делаем запрос
+все тоже самое что и с api
+
+урок 74 componentDidUpdate
+идем profile status и добовляем componenDidUpdate()
+ componenDidUpdate = (prevProps,prevState) => {
+    if (prevProps.status !== this.props.status){
+    this.setState({
+      status:this.props.status
+    })
+  }
+
+ урок 75 - redux-form введение (login)
+ Далее у нас будут очень большие формы и нужен какой то общий подход 
+ Тоесть на каждое изменнение формы мы должны что то dispatch  в стэйт и это геморно для этого на помощь на приходит redux-form
+ котрое доболвяет в reducer свой state
+ идем в login и добовляем туда форму 
+ далее после того как сверстали форму устанавливаем redux-form
+ npm i redux-form --save
+ далее в redux store импортируем 
+ import {reducer as formReducer} from "redux-form"
+ и в комбайнер добовляем form:formReducer
+ если ввести в консоле в хроме store.getState().form мы увидем пустой обьект 
+ далее законектим нашу форму 
+  reduxForm({
+      // a unique name for the form
+      form: 'contact'
+    })(ContactForm)
+    import { reduxForm } from "redux-form"
+     
    
    
    

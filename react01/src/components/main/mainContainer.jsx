@@ -2,7 +2,7 @@ import React from "react";
 import Main from "./main";
 import * as axios from "axios";
 import { connect } from "react-redux";
-import { getUserProfile, setUserProfile } from "../../redax/profileReduce";
+import { getUserProfile, setUserProfile,getUserStatus,upDateUserStatus } from "../../redax/profileReduce";
 import {
   useLocation,
   useNavigate,
@@ -15,23 +15,24 @@ class MainContainer extends React.Component {
   constructor(props) {
     super(props);
   }
+  
   componentDidMount() {
+
     let userId = this.props.router.params.userId;
     this.props.getUserProfile(userId);
+    this.props.getUserStatus(userId)
   }
 
   render() {
-    return <Main {...this.props} profile={this.props.profile} />;
+    
+    return <Main {...this.props} profile={this.props.profile} status={this.props.status} upDateStatus={this.props.upDateUserStatus}/>;
   }
 }
-// compose(connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// ),withRouter,withAuthRedirect)(MainContainer)
-// let AuthRedirectComponent = withAuthRedirect(MainContainer) 
+
 let mapStateToProps = (state) => {
   return {
     profile: state.profilePage.profile,
+    status:state.profilePage.status
   };
 };
 // let WithUrlDataContainerComponent = withRouter(AuthRedirectComponent)
@@ -43,6 +44,12 @@ const mapDispatchToProps = (dispatch) => {
     getUserProfile: (profile) => {
       dispatch(getUserProfile(profile));
     },
+    getUserStatus: (userId) => {
+      dispatch(getUserStatus(userId))
+    },
+    upDateUserStatus:(status) => {
+      dispatch(upDateUserStatus(status))
+    }
   };
 };
 function withRouter(Component) {
@@ -55,10 +62,6 @@ function withRouter(Component) {
   return ComponentWithRouterProp;
 }
 
-// export default connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(withRouter(WithUrlDataContainerComponent));
 export default compose(connect(
   mapStateToProps,
   mapDispatchToProps

@@ -28,3 +28,9 @@ export const authMe = () => {
   return instence.get(
     `auth/me`
   )}
+export const getStatus = (userId) => {
+  return instence.get(`profile/status/` + userId) 
+} 
+export const upDateStatus = (status) => {
+  return instence.put(`profile/status`,{status})
+}

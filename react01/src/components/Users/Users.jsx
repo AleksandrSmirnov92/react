@@ -9,8 +9,17 @@ import { NavLink, Link } from "react-router-dom";
 let Users = (props) => {
   let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
   let pages = [];
-  for (let i = 1; i < pagesCount + 1; i++) {
-    if (i <= 10) {
+  // for (let i = 1; i < pagesCount + 1; i++) {
+  //   if (i <= 10) {
+  //     pages.push(i);
+  //   } else {
+  //     break;
+  //   }
+  // }
+  let b = 0
+  for (let i = pagesCount + 1; i > 0; i--) {
+    b++
+    if (b <= 10) {
       pages.push(i);
     } else {
       break;
