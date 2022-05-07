@@ -46,7 +46,7 @@ const validationSchemaLoginForm = Yup.object().shape( {
 
    password: Yup.string()
       .min( 2, "Must be longer than 2 characters" )
-      .max( 5, "Must be shorter than 5 characters" )
+      .max( 20, "Must be shorter than 20 characters" )
       .required( "Required 2" )
 } );
 
@@ -65,8 +65,16 @@ const Login = () => {
             }}
             validate={validateLoginForm}
             validationSchema={validationSchemaLoginForm}
-            onSubmit={(values) => {
-               console.log( values )
+            onSubmit={(values,{setSubmitting}) => {
+               // console.log(JSON.stringify(values, null, 2) )
+               // alert(JSON.stringify(values, null, 2))
+               setTimeout ( ( ) => {  
+                  alert ( JSON.stringify ( values , null , 2 ) ) ; 
+                  setSubmitting ( false ) ;
+                } , 400 ) ; 
+   
+
+
             }}
          >
             {() => (
@@ -95,7 +103,7 @@ const Login = () => {
                      <label htmlFor={'rememberMe'}> remember me </label>
                   </div>
 
-                  <button type={'submit'}>Login</button>
+                  <button  type={'Submit'}>Login</button>
                </Form>
             )}
          </Formik>
