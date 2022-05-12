@@ -1,3 +1,5 @@
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
 import React from 'react';
 import posts from "./MyPost.module.css";
 import Post from './post/post';
@@ -25,6 +27,7 @@ const MyPost = (props) => {
   }
 return (
    <div className={posts.myPosts}>
+     <MyPostFormik oneButtonClick={props.addPost} onPostChange={props.updateNewPostText}/>
      <div>
        <textarea ref={newPostElement} value = {props.newPostText} onChange = {onPostChange}></textarea>
        <div>
@@ -43,5 +46,40 @@ return (
  
 
 );
+}
+const MyPostFormik = (props) => {
+  const addNewMessage = (values) => {
+    props.onPostChange(values)
+  }
+  return(
+    <div>
+    <Formik
+    initialValues={{
+      newPostText: "",
+    }}
+    onSubmit={(values, { setSubmitting ,resetForm}) => {
+      setTimeout(() => {
+        
+        addNewMessage(values.newPostText)
+        props.oneButtonClick()
+        resetForm(values)
+        setSubmitting(false);
+      }, 400);
+    }}
+    >
+      {()=>(
+
+        <Form>
+    <Field as={"textarea"} name={"newPostText"} placeholder={"Введите сообщение"}></Field>
+       <div>
+       <button type="submit"><span>Button</span></button>
+       <span>FORMIK</span>
+       </div>
+       
+       </Form>
+      )}
+       </Formik>
+       </div>
+  )
 }
 export default MyPost;
