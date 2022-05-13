@@ -49,14 +49,15 @@ return(
   })
 )
 }
-export const LoginUser = (email,password,remeberMe) => (dispatch) => {
+export const LoginUser = (email,password,remeberMe,) => (dispatch) => {
   return(
     login(email,password,remeberMe)
     .then((response) => {
      
     if(response.data.resultCode === 0) {
       dispatch(getAuthUserData())
-    }
+    } 
+    
     })
   )
   }

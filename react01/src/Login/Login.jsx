@@ -64,7 +64,7 @@ const Login = (props) => {
    return (
       <div>
          <h2> ... Login 555 </h2>
-         
+
          <Formik
             initialValues={{
                email: "",
@@ -81,7 +81,6 @@ const Login = (props) => {
                   props.LoginUser(values.email,values.password,values.rememberMe) ;
                   setSubmitting ( false ) ;
                 } , 400 ) ; 
-
             }}
          >
             
