@@ -34,3 +34,9 @@ export const getStatus = (userId) => {
 export const upDateStatus = (status) => {
   return instence.put(`profile/status`,{status})
 }
+export const login = (email,password,remeberMe = false) => {
+  return instence.post(`auth/login`,{email,password,remeberMe})
+}
+export const logout = () => {
+  return instence.delete(`auth/login`)
+}

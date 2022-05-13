@@ -796,7 +796,13 @@ compose(connect(mapStateToProps, mapDispatchToProps) ,withAuthRedirect)(Dialogs)
       form: 'contact'
     })(ContactForm)
     import { reduxForm } from "redux-form"
-     
+ 
+  урок 78 login и logout api 
+  тут мы переходим в authreducer и создаем login функцию 
+  далее идем в api authme и прописываем
+  
+  урок 79 stopSubmit
+  
    
    
    

@@ -1,4 +1,4 @@
-import {authMe} from "../API/api"
+import {authMe,login,logout} from "../API/api"
 const SET_USER_DATA = "SET_USER_DATA";
 
 
@@ -24,13 +24,14 @@ const authReduce = (state = initialState, action) => {
         return state
   }
 };
-export const setUserData = (id, email, login) => {
+export const setUserData = (id, email, login,isAuth) => {
   return {
       type:SET_USER_DATA,
       data: {
         id:id,
         email:email,
-        login:login
+        login:login,
+        isAuth:isAuth
       }
 
     }
@@ -43,9 +44,31 @@ return(
    
   if(response.data.resultCode === 0) {
     let {email,id,login} = response.data.data
-    dispatch(setUserData(id,email,login))
+    dispatch(setUserData(id,email,login,true))
   }
   })
 )
 }
+export const LoginUser = (email,password,remeberMe) => (dispatch) => {
+  return(
+    login(email,password,remeberMe)
+    .then((response) => {
+     
+    if(response.data.resultCode === 0) {
+      dispatch(getAuthUserData())
+    }
+    })
+  )
+  }
+  export const LogoutUser = () => (dispatch) => {
+    return(
+      logout()
+      .then((response) => {
+       
+      if(response.data.resultCode === 0) {
+        dispatch(setUserData(null,null,null,false))
+      }
+      })
+    )
+    }
 export default authReduce;

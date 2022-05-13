@@ -1,6 +1,10 @@
 import React from "react"
 import {Formik, Form, Field, ErrorMessage} from "formik";
 import * as Yup from "yup";
+import {connect} from "react-redux"
+import {LoginUser} from "../redax/AuthReducer"
+import { Navigate } from "react-router-dom";
+
 // import { Field, reduxForm } from 'redux-form'
 
 //  const LoginForm = (props) => {
@@ -51,12 +55,16 @@ const validationSchemaLoginForm = Yup.object().shape( {
 } );
 
 
-const Login = () => {
-
+const Login = (props) => {
+   if (props.isAuth) {
+      return (
+         <Navigate to="/main"/>
+      )
+   }
    return (
       <div>
          <h2> ... Login 555 </h2>
-
+         
          <Formik
             initialValues={{
                email: "",
@@ -69,16 +77,17 @@ const Login = () => {
                // console.log(JSON.stringify(values, null, 2) )
                // alert(JSON.stringify(values, null, 2))
                setTimeout ( ( ) => {  
-                  alert ( JSON.stringify ( values , null , 2 ) ) ; 
+                  // alert(JSON.stringify ( values , null , 2 ) ) 
+                  props.LoginUser(values.email,values.password,values.rememberMe) ;
                   setSubmitting ( false ) ;
                 } , 400 ) ; 
-   
-
 
             }}
          >
+            
             {() => (
                <Form>
+                  
                   <div>
                      <Field
                         name={'email'}
@@ -115,5 +124,10 @@ const Login = () => {
       </div>
    )
 }
-
-export default Login
+const mapStateToProps = (state) => {
+   debugger
+   return{
+      isAuth:state.auth.isAuth
+   }
+}
+export default connect(mapStateToProps, {LoginUser}) (Login)

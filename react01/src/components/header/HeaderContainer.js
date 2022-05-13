@@ -4,7 +4,7 @@ import Header from './Header';
 import headers from "./header.module.css"
 import * as axios from "axios";
 import { connect } from 'react-redux';
-import{setUserData,getAuthUserData} from "../../redax/AuthReducer"
+import{setUserData,getAuthUserData,LogoutUser} from "../../redax/AuthReducer"
 class HeaderContainer extends React.Component {
   componentDidMount() {
     // axios
@@ -46,8 +46,10 @@ const mapDispatchToProps = (dispatch) => {
     // },
     getAuthUserData:(id,email,login) => {
       dispatch(getAuthUserData(id,email,login))
+    },
+    LogoutUser:() => {
+      dispatch(LogoutUser())
     }
-    
   }
  )
 }
