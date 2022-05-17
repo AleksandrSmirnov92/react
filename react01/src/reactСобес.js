@@ -812,7 +812,24 @@ compose(connect(mapStateToProps, mapDispatchToProps) ,withAuthRedirect)(Dialogs)
   урок 81 селекторы 
   выборщик 
   урок 82 mapstateToProps
-    
+  reselect если у вас есть сложный селектор то пожалуфста его создавайте его с помощью библиотеке reselect
+  чтобы создать createSelector нужно создать селекто при помощи ресилект 
+  export const fetUsersSuperSelector = createSelector()
+  внутри create selecor передаем функцию которая будет выбирать что то из state 
+  дальше мы должны передать в нее стжйт но он не придет туда целиком поэтому мы должны определить что в него будет приходить
+   export const getUsersSelector = (state) => {
+    debugger
+   return (
+      state.usersPage.users
+   )
+ }
+ 
+ 
+ export const getUsers = createSelector(getUsersSelector,(user)=>{ сюда передаем столько селекторов сколько нам нужно 
+  return ( 
+     user
+     )
+ })  
    
    
    

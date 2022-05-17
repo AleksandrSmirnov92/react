@@ -1,11 +1,21 @@
  import React from "react"
+import { createSelector } from "reselect"
 
- export const getUsers = (state) => {
+ export const getUsersSelector = (state) => {
     debugger
    return (
       state.usersPage.users
    )
  }
+ 
+ 
+ export const getUsers = createSelector(getUsersSelector,(user)=>{
+  return ( 
+     user
+     )
+ })
+
+
  export const getPageSize = (state) => {
    return (
       state.usersPage.pageSize
