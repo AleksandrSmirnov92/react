@@ -10,6 +10,7 @@ import {
 } from "../../redax/UsersReduce";
 import Users from "./Users";
 import {withAuthRedirect} from "../../HOC/WithAuthRedirect"
+import {getPageSize,getUsers,getTotalUsersCount,getIsFetching,getCurrentPage,getfollowingInProgress} from "../../redax/users_selector"
 class UsersApiComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -40,14 +41,24 @@ class UsersApiComponent extends React.Component {
   }
 }
 
+// const mapStateToProps = (state) => {
+//   return {
+//     users: state.usersPage.users,
+//     pageSize: state.usersPage.pageSize,
+//     totalUsersCount: state.usersPage.totalUsersCount,
+//     currentPage: state.usersPage.currentPage,
+//     isFetching: state.usersPage.isFetching,
+//     followingInProgress:state.usersPage.followingInProgress
+//   };
+// };
 const mapStateToProps = (state) => {
   return {
-    users: state.usersPage.users,
-    pageSize: state.usersPage.pageSize,
-    totalUsersCount: state.usersPage.totalUsersCount,
-    currentPage: state.usersPage.currentPage,
-    isFetching: state.usersPage.isFetching,
-    followingInProgress:state.usersPage.followingInProgress
+    users: getUsers(state),
+    pageSize: getPageSize(state) ,
+    totalUsersCount: getTotalUsersCount(state),
+    currentPage: getCurrentPage(state),
+    isFetching: getIsFetching(state),
+    followingInProgress:getfollowingInProgress(state)
   };
 };
 const mapDispatchToProps = (dispatch) => {

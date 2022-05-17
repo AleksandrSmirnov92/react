@@ -803,6 +803,16 @@ compose(connect(mapStateToProps, mapDispatchToProps) ,withAuthRedirect)(Dialogs)
   
   урок 79 stopSubmit
   
+  урок 80 app initialization 
+  идем в app и делаем из функциональной компоненты классувую 
+  из hedercontainer копируем componentdid mount
+  далее  в app.js делаем connect
+    устарело 
+
+  урок 81 селекторы 
+  выборщик 
+  урок 82 mapstateToProps
+    
    
    
    
