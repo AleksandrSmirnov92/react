@@ -1,6 +1,7 @@
 import React from "react";
 import mains from "./ProfileInfo.module.css";
-import ProfileStatus from "./ProfileStatus"
+// import ProfileStatus from "./ProfileStatus"
+import ProfileStatusWithHooks from "./ProfileStatusHooks"
 const ProfileInfo = (props) => {
   
   if (!props.profile) {
@@ -20,7 +21,7 @@ const ProfileInfo = (props) => {
           alt=""
         ></img>
         <div className={mains.main_decription}>
-        <ProfileStatus status={props.status} upDateStatus={props.upDateStatus}/>
+        <ProfileStatusWithHooks status={props.status} upDateStatus={props.upDateStatus}/>
           <img src={props.profile.photos.large} alt=""/>
           <span>{props.profile.userId}</span>
           <h1> Dmitriy we</h1>

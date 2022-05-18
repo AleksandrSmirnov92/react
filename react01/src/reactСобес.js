@@ -830,10 +830,19 @@ compose(connect(mapStateToProps, mapDispatchToProps) ,withAuthRedirect)(Dialogs)
      user
      )
  })  
+ 84 итак хуки  сначала нужно разобраться чем отличается классовая компонента от функциональной 
+ что может классовая 
+ хранить локальный state и делать асинхронные операции
+ будем пробывать делать на profile status
+ hook - это функция которая что-то умеет делать и мы можем ее использовать в функциональной компоненте 
+ в функции указываем useState ипортируем из react 
+ useState возвращает массив 
+
+ let stateWithSetState = useState(false)
+     let editMode = stateWithSetState[0] - первое сидит наше значение false
+    let setEditMode = stateWithSetState[1] - сидит функция которая меняет наше первое значение 
    
-   
-   
-   
+    useEffect(()=>{}) - хук говорит закинте в меня функцию когда произойдет отрисовка 
    
    
    
