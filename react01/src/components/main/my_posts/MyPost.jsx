@@ -6,7 +6,6 @@ import Post from './post/post';
 // import { addPostActionCreator ,apdatePostActionCreator} from '../../../redax/profileReduce';
 
 const MyPost = (props) => {
- 
   let postDataMap = props.posts.map((p)=>{
     return (
       <Post massage = {p.massage} like = {p.likescount}/>

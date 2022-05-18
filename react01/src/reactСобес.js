@@ -844,7 +844,12 @@ compose(connect(mapStateToProps, mapDispatchToProps) ,withAuthRedirect)(Dialogs)
    
     useEffect(()=>{}) - хук говорит закинте в меня функцию когда произойдет отрисовка 
    
-   
+   87 shouldComponentUpdate,pureComponent memo
+   оборачиваем нашу компоненту и она рендерится один раз 
+  
+   89 unit test
+
+   90 redux ducks рефакторинг
    
    
    
