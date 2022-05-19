@@ -23,6 +23,7 @@ class MainContainer extends React.Component {
     this.props.getUserStatus(userId)
   }
 
+  
   render() {
     
     return <Main {...this.props} profile={this.props.profile} status={this.props.status} upDateStatus={this.props.upDateUserStatus}/>;

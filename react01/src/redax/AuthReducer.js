@@ -37,17 +37,17 @@ export const setUserData = (id, email, login,isAuth) => {
     }
   
 }
-export const getAuthUserData = () => (dispatch) => {
-return(
-  authMe()
-  .then((response) => {
+export const getAuthUserData = () => async (dispatch) => {
+
+ let response = await authMe()
+  
    
   if(response.data.resultCode === 0) {
     let {email,id,login} = response.data.data
     dispatch(setUserData(id,email,login,true))
   }
-  })
-)
+  
+
 }
 export const LoginUser = (email,password,remeberMe,) => (dispatch) => {
   return(

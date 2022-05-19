@@ -4,32 +4,37 @@ import styles from "./Users.module.css";
 import UserPhoto from "../../images/user.png";
 import preloader from "../../images/loadsvg.svg";
 import { NavLink, Link } from "react-router-dom";
+import { useState } from "react";
 // import { unfollowAPI, followAPI } from "../../API/api";
 // import {unfollowAc} from "../../redax/UsersReduce"
 let Users = (props) => {
+  debugger
   let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
   let pages = [];
-  // for (let i = 1; i < pagesCount + 1; i++) {
-  //   if (i <= 10) {
+  for (let i = 1; i < pagesCount + 1; i++) {
+      pages.push(i);
+  }
+  let portionCount = Math.ceil(pagesCount / 10)
+  let [positionNumber, setPositionNumber] = useState(1)
+  let leftPorttionPageNumber = (positionNumber - 1) * 10 + 1
+  let rightPositionPageNumber = positionNumber * 10
+  console.log(props.pageSize)
+  // let b = 0
+  // for (let i = pagesCount + 1; i > 0; i--) {
+  //   b++
+  //   if (b <= 10) {
   //     pages.push(i);
   //   } else {
   //     break;
   //   }
   // }
-  let b = 0
-  for (let i = pagesCount + 1; i > 0; i--) {
-    b++
-    if (b <= 10) {
-      pages.push(i);
-    } else {
-      break;
-    }
-  }
   return (
     <div>
       <div className={styles.mainContent}>
         <div className={styles.usersPage}>
-          {pages.map((users) => {
+          { (positionNumber > 1 && <button onClick={() => {setPositionNumber(positionNumber - 1)}}>Right</button> ) }
+          {pages.filter(p => p >= leftPorttionPageNumber && p <= rightPositionPageNumber)
+             .map((users) => {
             return (
               <span
                 onClick={(e) => {
@@ -43,6 +48,7 @@ let Users = (props) => {
               </span>
             );
           })}
+          {positionNumber < portionCount && <button onClick={() => {setPositionNumber(positionNumber + 1)}}>Left</button>}
         </div>
 
         <img

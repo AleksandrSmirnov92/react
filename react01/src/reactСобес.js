@@ -851,6 +851,12 @@ compose(connect(mapStateToProps, mapDispatchToProps) ,withAuthRedirect)(Dialogs)
 
    90 redux ducks рефакторинг
    
+   91 chrome extensions для react и redux 
+   в хроме создаем нового пользователя 
+   вводим settings и вбиваем react - react developer tools 
+   и redux DevTools
+
+   урок 93 paginator постраничный вывод пользователей 
    
    
    
