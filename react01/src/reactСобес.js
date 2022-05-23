@@ -803,13 +803,60 @@ compose(connect(mapStateToProps, mapDispatchToProps) ,withAuthRedirect)(Dialogs)
   
   урок 79 stopSubmit
   
+  урок 80 app initialization 
+  идем в app и делаем из функциональной компоненты классувую 
+  из hedercontainer копируем componentdid mount
+  далее  в app.js делаем connect
+    устарело 
+
+  урок 81 селекторы 
+  выборщик 
+  урок 82 mapstateToProps
+  reselect если у вас есть сложный селектор то пожалуфста его создавайте его с помощью библиотеке reselect
+  чтобы создать createSelector нужно создать селекто при помощи ресилект 
+  export const fetUsersSuperSelector = createSelector()
+  внутри create selecor передаем функцию которая будет выбирать что то из state 
+  дальше мы должны передать в нее стжйт но он не придет туда целиком поэтому мы должны определить что в него будет приходить
+   export const getUsersSelector = (state) => {
+    debugger
+   return (
+      state.usersPage.users
+   )
+ }
+ 
+ 
+ export const getUsers = createSelector(getUsersSelector,(user)=>{ сюда передаем столько селекторов сколько нам нужно 
+  return ( 
+     user
+     )
+ })  
+ 84 итак хуки  сначала нужно разобраться чем отличается классовая компонента от функциональной 
+ что может классовая 
+ хранить локальный state и делать асинхронные операции
+ будем пробывать делать на profile status
+ hook - это функция которая что-то умеет делать и мы можем ее использовать в функциональной компоненте 
+ в функции указываем useState ипортируем из react 
+ useState возвращает массив 
+
+ let stateWithSetState = useState(false)
+     let editMode = stateWithSetState[0] - первое сидит наше значение false
+    let setEditMode = stateWithSetState[1] - сидит функция которая меняет наше первое значение 
    
+    useEffect(()=>{}) - хук говорит закинте в меня функцию когда произойдет отрисовка 
    
+   87 shouldComponentUpdate,pureComponent memo
+   оборачиваем нашу компоненту и она рендерится один раз 
+  
+   89 unit test
+
+   90 redux ducks рефакторинг
    
-   
-   
-   
-   
+   91 chrome extensions для react и redux 
+   в хроме создаем нового пользователя 
+   вводим settings и вбиваем react - react developer tools 
+   и redux DevTools
+
+   урок 93 paginator постраничный вывод пользователей 
    
    
    
